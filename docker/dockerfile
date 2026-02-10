@@ -1,0 +1,6 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+COPY src/test_k8s.py .
+
+CMD ["python", "test_k8s.py"]

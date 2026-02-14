@@ -640,7 +640,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Author**: Saida Aourras
 - **Email**: aourrassaida@gmail.com
-- **Project Link**: [https://github.com/your-username/nlp-ticket-classification](https://github.com/SaidaAourras/NLP_Tickets_IT.git)
+- **Project Link**: [https://github.com/SaidaAourras/NLP_Tickets_IT.git](https://github.com/SaidaAourras/NLP_Tickets_IT.git)
 
 ### Issues & Bug Reports
 

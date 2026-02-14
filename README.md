@@ -638,9 +638,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact & Support
 
-- **Author**: Your Name
-- **Email**: your.email@company.com
-- **Project Link**: [https://github.com/your-username/nlp-ticket-classification](https://github.com/your-username/nlp-ticket-classification)
+- **Author**: Saida Aourras
+- **Email**: aourrassaida@gmail.com
+- **Project Link**: [https://github.com/your-username/nlp-ticket-classification](https://github.com/SaidaAourras/NLP_Tickets_IT.git)
 
 ### Issues & Bug Reports
 
@@ -650,9 +650,6 @@ Found a bug? Please open an issue with:
 3. Expected vs actual behavior
 4. Environment details (OS, Python version, etc.)
 
-### Questions & Discussions
-
-For general questions, use [GitHub Discussions](https://github.com/your-username/nlp-ticket-classification/discussions).
 
 ---
 

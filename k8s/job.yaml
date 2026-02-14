@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ml-pipeline
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ml-pipeline-job
+  namespace: ml-pipeline
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: ml-pipeline
+        image: your-registry/nlp-pipeline:latest
+        args: ["--input", "/data/dataset.csv"]
+        volumeMounts:
+          - name: data
+            mountPath: /data
+          - name: outputs
+            mountPath: /app/outputs
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+      volumes:
+        - name: data
+          hostPath:
+            path: /path/to/data
+        - name: outputs
+          emptyDir: {}

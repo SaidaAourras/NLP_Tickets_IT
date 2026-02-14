@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ml-pipeline-cronjob
+  namespace: ml-pipeline
+spec:
+  schedule: "0 2 * * *"  # Tous les jours à 2h du matin
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: docker-registry-secret
+          containers:
+          - name: ml-pipeline
+            image: your-dockerhub-username/nlp-ticket-classifier:latest
+            command: ["python", "src/pipeline.py", "/app/data/dataset.csv"]
+            envFrom:
+              - configMapRef:
+                  name: ml-config
+            volumeMounts:
+              - name: data-volume
+                mountPath: /app/data
+          restartPolicy: OnFailure
+          volumes:
+            - name: data-volume
+              persistentVolumeClaim:
+                claimName: ml-data-pvc

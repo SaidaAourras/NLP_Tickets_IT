@@ -86,10 +86,11 @@ jobs:
           images: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE }}
           tags: |
             type=ref,event=branch
-            type=sha,prefix={{branch}}-
+            type=sha
             type=raw,value=latest,enable={{is_default_branch}}
       
       - name: Build and push
+        id: build
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -101,6 +102,7 @@ jobs:
       
       - name: Image digest
         run: echo ${{ steps.build.outputs.digest }}
+
 
   # JOB 3: Security Scan
   # security:

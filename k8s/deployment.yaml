@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-pipeline-deployment
+  namespace: ml-pipeline
+  labels:
+    app: ml-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-pipeline
+  template:
+    metadata:
+      labels:
+        app: ml-pipeline
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-secret
+      containers:
+      - name: ml-pipeline
+        image: your-dockerhub-username/nlp-ticket-classifier:latest
+        imagePullPolicy: Always
+        envFrom:
+          - configMapRef:
+              name: ml-config
+        volumeMounts:
+          - name: data-volume
+            mountPath: /app/data
+          - name: models-volume
+            mountPath: /app/models
+          - name: chromadb-volume
+            mountPath: /app/chromadb
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: ml-data-pvc
+        - name: models-volume
+          emptyDir: {}
+        - name: chromadb-volume
+          emptyDir: {}
